@@ -1,0 +1,249 @@
+/* ==========================================
+   VARIABLES Y CONFIGURACIÓN BASE
+   ========================================== */
+:root {
+    --primary-color: #00a896;    /* Turquesa Limpieza */
+    --secondary-color: #028090;  /* Azul Profundo */
+    --dark-color: #2b2d42;       /* Texto oscuro */
+    --light-bg: #f4f7f6;         /* Fondo claro grisáceo */
+    --white: #ffffff;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--light-bg);
+    color: var(--dark-color);
+    line-height: 1.6;
+}
+
+/* ==========================================
+   HEADER Y NAVEGACIÓN
+   ========================================== */
+header {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    color: var(--white);
+    text-align: center;
+    padding: 2.5rem 1rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+nav {
+    background-color: var(--white);
+    display: flex;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav a {
+    color: var(--dark-color);
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+nav a:hover {
+    color: var(--primary-color);
+    background-color: rgba(0, 168, 150, 0.05);
+}
+
+/* ==========================================
+   HERO SECTION
+   ========================================== */
+.hero {
+    background: relative;
+    background-color: #e2ece9;
+    text-align: center;
+    padding: 4rem 1rem;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.hero h1 {
+    font-size: 2.2rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* ==========================================
+   PRODUCTOS (GRID LAYOUT)
+   ========================================== */
+.productos {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+}
+
+.productos h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    color: var(--secondary-color);
+}
+
+.productos h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 0.5rem auto 0;
+}
+
+/* Grilla responsiva automatizada */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background-color: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.card h3 {
+    padding: 1rem 1rem 0.25rem 1rem;
+    font-size: 1.2rem;
+}
+
+.card p {
+    padding: 0 1rem 1rem 1rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.btn {
+    display: block;
+    width: calc(100% - 2rem);
+    margin: 0 auto 1rem auto;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+}
+
+/* ==========================================
+   CARRITO DE COMPRAS
+   ========================================== */
+.carrito {
+    max-width: 600px;
+    margin: 3rem auto;
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    border-top: 5px solid var(--secondary-color);
+}
+
+.carrito h2 {
+    margin-bottom: 1.5rem;
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+}
+
+#lista-carrito {
+    list-style: none;
+    margin-bottom: 1.5rem;
+}
+
+#lista-carrito li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* Botón para eliminar productos del carro */
+.btn-eliminar {
+    background: none;
+    border: none;
+    color: #e63946;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-left: 1rem;
+}
+
+.btn-eliminar:hover {
+    text-decoration: underline;
+}
+
+.carrito h3 {
+    text-align: right;
+    font-size: 1.4rem;
+    color: var(--dark-color);
+}
+
+#total {
+    color: var(--secondary-color);
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+footer {
+    background-color: var(--dark-color);
+    color: var(--white);
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 4rem;
+}
+
+footer p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
