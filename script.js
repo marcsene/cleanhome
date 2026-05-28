@@ -1,92 +1,138 @@
-// Esperar a que el DOM esté completamente cargado
-document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Matriz o Arreglo para almacenar los productos agregados
-    let carrito = [];
+const abrirCarrito = document.getElementById('abrir-carrito');
+const cerrarCarrito = document.getElementById('cerrar-carrito');
 
-    // 2. Elementos del DOM seleccionados
-    const botonesComprar = document.querySelectorAll('.btn');
-    const listaCarrito = document.getElementById('lista-carrito');
-    const totalElemento = document.getElementById('total');
+const carritoSidebar = document.getElementById('carrito-sidebar');
+const carritoOverlay = document.getElementById('carrito-overlay');
 
-    // 3. Escuchar clics en los botones de "Comprar"
-    botonesComprar.forEach((boton) => {
-        boton.addEventListener('click', agregarAlCarrito);
+const botonesAgregar = document.querySelectorAll('.btn-agregar');
+
+const carritoLista = document.getElementById('carrito-lista-items');
+
+const contadorNav = document.getElementById('contador-nav');
+
+const totalPrecio = document.getElementById('total-precio');
+
+const carritoVacio = document.getElementById('carrito-vacio-msg');
+
+let carrito = [];
+
+/* ABRIR CARRITO */
+
+abrirCarrito.addEventListener('click', () => {
+    carritoSidebar.classList.add('open');
+    carritoOverlay.style.display = 'block';
+});
+
+/* CERRAR CARRITO */
+
+cerrarCarrito.addEventListener('click', cerrarSidebar);
+
+carritoOverlay.addEventListener('click', cerrarSidebar);
+
+function cerrarSidebar(){
+    carritoSidebar.classList.remove('open');
+    carritoOverlay.style.display = 'none';
+}
+
+/* AGREGAR PRODUCTOS */
+
+botonesAgregar.forEach(btn => {
+
+    btn.addEventListener('click', () => {
+
+        const nombre = btn.dataset.nombre;
+        const precio = Number(btn.dataset.precio);
+
+        carrito.push({
+            nombre,
+            precio
+        });
+
+        actualizarCarrito();
     });
 
-    // 4. Función para agregar producto al carrito
-    function agregarAlCarrito(e) {
-        const boton = e.target;
-        // Obtenemos el contenedor padre del botón (la tarjeta)
-        const card = boton.closest('.card');
-        
-        // Extraemos los datos del producto
-        const nombre = card.querySelector('h3').textContent;
-        const precioTexto = card.querySelector('p').textContent;
-        
-        // Limpiamos el precio convirtiendo "$5.990" en un número entero válido (5990)
-        const precio = parseInt(precioTexto.replace('$', '').replace('.', '').trim());
-
-        // Creamos el objeto del producto
-        const producto = {
-            id: Date.now(), // ID único basado en tiempo para poder borrar con precisión
-            nombre: nombre,
-            precio: precio
-        };
-
-        // Empujamos el producto al array del carro
-        carrito.push(producto);
-
-        // Actualizamos la interfaz gráfica
-        actualizarInterfazCarrito();
-    }
-
-    // 5. Función para renderizar el carrito en pantalla y sumar el total
-    function actualizarInterfazCarrito() {
-        // Limpiamos la lista visual antes de redibujar
-        listaCarrito.innerHTML = '';
-
-        let sumaTotal = 0;
-
-        // Si el carrito está vacío, mostramos un mensaje sutil
-        if (carrito.length === 0) {
-            listaCarrito.innerHTML = '<li>El carrito está vacío</li>';
-        } else {
-            // Recorremos los elementos actuales del carrito
-            carrito.forEach((item) => {
-                const li = document.createElement('li');
-                
-                // Formateamos el precio de vuelta a un string bonito de moneda
-                const precioFormateado = '$' + item.precio.toLocaleString('es-CL');
-                
-                li.innerHTML = `
-                    <span>🧼 ${item.nombre} - <strong>${precioFormateado}</strong></span>
-                    <button class="btn-eliminar" data-id="${item.id}">Eliminar</button>
-                `;
-                
-                listaCarrito.appendChild(li);
-                sumaTotal += item.precio;
-            });
-        }
-
-        // Actualizamos el elemento de texto del costo Total
-        totalElemento.textContent = '$' + sumaTotal.toLocaleString('es-CL');
-
-        // Volver a activar los escuchadores para los nuevos botones de eliminar generados
-        asignarEventosEliminar();
-    }
-
-    // 6. Asignar los clics a los botones de eliminar individuales
-    function asignarEventosEliminar() {
-        const botonesEliminar = document.querySelectorAll('.btn-eliminar');
-        botonesEliminar.forEach((boton) => {
-            boton.addEventListener('click', (e) => {
-                const idParaEliminar = parseInt(e.target.getAttribute('data-id'));
-                // Filtramos el array para quitar el elemento seleccionado
-                carrito = carrito.filter(item => item.id !== idParaEliminar);
-                // Volvemos a actualizar los cambios en pantalla
-                actualizarInterfazCarrito();
-            });
-        });
-    }
 });
+
+/* ACTUALIZAR CARRITO */
+
+function actualizarCarrito(){
+
+    carritoLista.innerHTML = '';
+
+    if(carrito.length === 0){
+
+        carritoVacio.style.display = 'block';
+
+    } else {
+
+        carritoVacio.style.display = 'none';
+
+    }
+
+    let total = 0;
+
+    carrito.forEach((producto, index) => {
+
+        total += producto.precio;
+
+        const li = document.createElement('li');
+
+        li.classList.add('carrito-item');
+
+        li.innerHTML = `
+            <div class="carrito-item-info">
+                <h4>${producto.nombre}</h4>
+                <p>$${producto.precio.toLocaleString('es-CL')}</p>
+            </div>
+
+            <button class="btn-remove-item" onclick="eliminarProducto(${index})">
+                ❌
+            </button>
+        `;
+
+        carritoLista.appendChild(li);
+
+    });
+
+    contadorNav.textContent = carrito.length;
+
+    totalPrecio.textContent = `$${total.toLocaleString('es-CL')}`;
+}
+
+/* ELIMINAR PRODUCTO */
+
+function eliminarProducto(index){
+
+    carrito.splice(index, 1);
+
+    actualizarCarrito();
+}
+
+/* WHATSAPP */
+
+document.getElementById('btn-whatsapp')
+.addEventListener('click', () => {
+
+    if(carrito.length === 0){
+
+        alert('Tu carrito está vacío');
+
+        return;
+    }
+
+    let mensaje = 'Hola, quiero comprar:%0A%0A';
+
+    carrito.forEach(producto => {
+
+        mensaje += `• ${producto.nombre} - $${producto.precio}%0A`;
+
+    });
+
+    const total = carrito.reduce((acc, item) => acc + item.precio, 0);
+
+    mensaje += `%0ATotal: $${total.toLocaleString('es-CL')}`;
+
+    window.open(`https://wa.me/56912345678?text=${mensaje}`, '_blank');
+});
+

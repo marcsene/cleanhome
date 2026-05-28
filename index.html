@@ -3,115 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CleanHome</title>
-
+    <title>CleanHome - Artículos de Aseo</title>
+    <!-- CSS de FontAwesome para los íconos idénticos a la imagen -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <h1>🧼 CleanHome</h1>
-        <p>Productos de limpieza para tu hogar</p>
-    </header>
+    <!-- Top Bar / Barra Informativa Superior -->
+    <div class="top-bar">
+        <span><i class="fa-solid fa-truck"></i> Envíos a todo el país</span>
+        <span><i class="fa-solid fa-shield-halved"></i> Productos de calidad</span>
+        <span><i class="fa-solid fa-phone"></i> +56 9 1234 5678</span>
+    </div>
 
-    <nav>
-        <a href="#">Inicio</a>
-        <a href="#productos">Productos</a>
-        <a href="#contacto">Contacto</a>
+    <!-- Navbar / Barra de Navegación principal -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-house-chimney-window logo-icon"></i>
+                <div>
+                    <h2>CleanHome</h2>
+                    <p>Artículos de Aseo</p>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="#">Inicio</a>
+                <a href="#productos" class="active">Productos</a>
+                <a href="#">Ofertas</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+            <button class="btn-carrito-nav" id="abrir-carrito">
+                <i class="fa-solid fa-cart-shopping"></i> Carrito (<span id="contador-nav">0</span>)
+            </button>
+        </div>
     </nav>
 
+    <!-- Hero Section con curvas y diseño moderno -->
     <section class="hero">
-        <h1>Todo para la limpieza de tu hogar</h1>
-        <p>Calidad, higiene y buenos precios</p>
-    </section>
-
-    <section class="productos" id="productos">
-        <h2>Nuestros Productos</h2>
-
-        <div class="cards">
-
-            <!-- Producto 1 -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1583947582886-f40ec95dd752?q=80&w=800" alt="Detergente">
-                <h3>Detergente</h3>
-                <p>$5.990</p>
-                <button class="btn">Comprar</button>
-            </div>
-
-            <!-- Producto 2 -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?q=80&w=800" alt="Cloro">
-                <h3>Cloro</h3>
-                <p>$2.500</p>
-                <button class="btn">Comprar</button>
-            </div>
-
-            <!-- Producto 3 -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1610552050890-fe99536c2615?q=80&w=800" alt="Lavalozas">
-                <h3>Lavalozas</h3>
-                <p>$1.990</p>
-                <button class="btn">Comprar</button>
-            </div>
-
-            <!-- Producto 4 -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1585421514738-01798e348b17?q=80&w=800" alt="Papel Higiénico">
-                <h3>Papel Higiénico</h3>
-                <p>$6.990</p>
-                <button class="btn">Comprar</button>
-            </div>
-
-            <!-- Producto 5 -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?q=80&w=800" alt="Detergente Líquido">
-                <h3>Detergente Líquido</h3>
-                <p>$5.990</p>
-                <button class="btn">Comprar</button>
-            </div>
-
-            <!-- Producto 6 -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1610552050890-fe99536c2615?q=80&w=800" alt="Detergente en Polvo">
-                <h3>Detergente en Polvo</h3>
-                <p>$4.990</p>
-                <button class="btn">Comprar</button>
-            </div>
-
-            <!-- Producto 7 -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?q=80&w=800" alt="Desinfectante">
-                <h3>Desinfectante</h3>
-                <p>$3.990</p>
-                <button class="btn">Comprar</button>
-            </div>
-
-            <!-- Producto 8 -->
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=800" alt="Jabón Multiuso">
-                <h3>Jabón Multiuso</h3>
-                <p>$2.990</p>
-                <button class="btn">Comprar</button>
-            </div>
-
+        <div class="hero-content">
+            <h1>Limpieza que<br>se nota ✨</h1>
+            <p>Productos de aseo para un hogar<br>más limpio y saludable</p>
+            <a href="#productos" class="btn-hero"><i class="fa-solid fa-basket-shopping"></i> Ver productos</a>
+        </div>
+        <div class="hero-image">
+            <img src="https://i.ibb.co/6wXbK8f/clean-products-hero.png" alt="Productos de Limpieza Hero" onerror="this.src='https://images.unsplash.com/photo-1583947582886-f40ec95dd752?q=80&w=800'">
         </div>
     </section>
 
-    <!-- Carrito -->
-    <section class="carrito">
-        <h2>🛒 Carrito de Compras</h2>
+    <!-- Sección Principal de Productos -->
+    <section class="productos-section" id="productos">
+        <h2 class="section-title">Nuestros Productos</h2>
+        
+        <!-- Categorías Estilizadas -->
+        <div class="categorias-container">
+            <button class="cat-btn active"><i class="fa-solid fa-table-cells-large"></i> Todos</button>
+            <button class="cat-btn"><i class="fa-solid fa-house-chimney"></i> Limpieza del Hogar</button>
+            <button class="cat-btn"><i class="fa-solid fa-shirt"></i> Lavandería</button>
+            <button class="cat-btn"><i class="fa-solid fa-sink"></i> Baño</button>
+            <button class="cat-btn"><i class="fa-solid fa-mitten"></i> Cocina</button>
+            <button class="cat-btn"><i class="fa-solid fa-box-tissue"></i> Papel</button>
+        </div>
 
-        <ul id="lista-carrito"></ul>
-
-        <h3>Total: <span id="total">$0</span></h3>
+        <!-- Grilla de Productos de la imagen -->
+        <div class="productos-grid">
+            <!-- Producto 1 -->
+            <div class="product-card" data-categoria="Papel">
+                <div class="img-container"><img src="https://images.unsplash.com/photo-1585421514738-01798e348b17?q=80&w=400" alt="Papel Higiénico"></div>
+                <h3>Papel Higiénico</h3>
+                <p class="precio">$6.990</p>
+                <button class="btn-agregar" data-nombre="Papel Higiénico" data-precio="6990"><i class="fa-solid fa-cart-shopping"></i> Agregar</button>
+            </div>
+            <!-- Producto 2 -->
+            <div class="product-card" data-categoria="Cocina">
+                <div class="img-container"><img src="https://images.unsplash.com/photo-1610552050890-fe99536c2615?q=80&w=400" alt="Lavalozas Líquido"></div>
+                <h3>Lavalozas Líquido</h3>
+                <p class="precio">$1.990</p>
+                <button class="btn-agregar" data-nombre="Lavalozas Líquido" data-precio="1990"><i class="fa-solid fa-cart-shopping"></i> Agregar</button>
+            </div>
+            <!-- Producto 3 -->
+            <div class="product-card" data-categoria="Lavandería">
+                <div class="img-container"><img src="https://images.unsplash.com/photo-1610552050890-fe99536c2615?q=80&w=400" alt="Detergente en Polvo"></div>
+                <h3>Detergente en Polvo</h3>
+                <p class="precio">$4.990</p>
+                <button class="btn-agregar" data-nombre="Detergente en Polvo" data-precio="4990"><i class="fa-solid fa-cart-shopping"></i> Agregar</button>
+            </div>
+            <!-- Producto 4 -->
+            <div class="product-card" data-categoria="Lavandería">
+                <div class="img-container"><img src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?q=80&w=400" alt="Detergente Líquido"></div>
+                <h3>Detergente Líquido</h3>
+                <p class="precio">$5.990</p>
+                <button class="btn-agregar" data-nombre="Detergente Líquido" data-precio="5990"><i class="fa-solid fa-cart-shopping"></i> Agregar</button>
+            </div>
+            <!-- Producto 5 -->
+            <div class="product-card" data-categoria="Limpieza del Hogar">
+                <div class="img-container"><img src="https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?q=80&w=400" alt="Cloro"></div>
+                <h3>Cloro</h3>
+                <p class="precio">$2.500</p>
+                <button class="btn-agregar" data-nombre="Cloro" data-precio="2500"><i class="fa-solid fa-cart-shopping"></i> Agregar</button>
+            </div>
+            <!-- Producto 6 -->
+            <div class="product-card" data-categoria="Limpieza del Hogar">
+                <div class="img-container"><img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?q=80&w=400" alt="Desinfectante"></div>
+                <h3>Desinfectante</h3>
+                <p class="precio">$3.990</p>
+                <button class="btn-agregar" data-nombre="Desinfectante" data-precio="3990"><i class="fa-solid fa-cart-shopping"></i> Agregar</button>
+            </div>
+            <!-- Producto 7 -->
+            <div class="product-card" data-categoria="Cocina">
+                <div class="img-container"><img src="https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=400" alt="Jabón Multiuso"></div>
+                <h3>Jabón Multiuso</h3>
+                <p class="precio">$2.990</p>
+                <button class="btn-agregar" data-nombre="Jabón Multiuso" data-precio="2990"><i class="fa-solid fa-cart-shopping"></i> Agregar</button>
+            </div>
+            <!-- Producto 8 -->
+            <div class="product-card" data-categoria="Baño">
+                <div class="img-container"><img src="https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?q=80&w=400" alt="Limpiavidrios"></div>
+                <h3>Limpiavidrios</h3>
+                <p class="precio">$2.490</p>
+                <button class="btn-agregar" data-nombre="Limpiavidrios" data-precio="2490"><i class="fa-solid fa-cart-shopping"></i> Agregar</button>
+            </div>
+            <!-- Producto 9 -->
+            <div class="product-card" data-categoria="Limpieza del Hogar">
+                <div class="img-container"><img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?q=80&w=400" alt="Limpia Pisos"></div>
+                <h3>Limpia Pisos</h3>
+                <p class="precio">$2.990</p>
+                <button class="btn-agregar" data-nombre="Limpia Pisos" data-precio="2990"><i class="fa-solid fa-cart-shopping"></i> Agregar</button>
+            </div>
+            <!-- Producto 10 -->
+            <div class="product-card" data-categoria="Cocina">
+                <div class="img-container"><img src="https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=400" alt="Desengrasante"></div>
+                <h3>Desengrasante</h3>
+                <p class="precio">$3.490</p>
+                <button class="btn-agregar" data-nombre="Desengrasante" data-precio="3490"><i class="fa-solid fa-cart-shopping"></i> Agregar</button>
+            </div>
+            <!-- Producto 11 -->
+            <div class="product-card" data-categoria="Baño">
+                <div class="img-container"><img src="https://images.unsplash.com/photo-1585421514738-01798e348b17?q=80&w=400" alt="Ambientador"></div>
+                <h3>Ambientador</h3>
+                <p class="precio">$2.490</p>
+                <button class="btn-agregar" data-nombre="Ambientador" data-precio="2490"><i class="fa-solid fa-cart-shopping"></i> Agregar</button>
+            </div>
+            <!-- Producto 12 -->
+            <div class="product-card" data-categoria="Cocina">
+                <div class="img-container"><img src="https://images.unsplash.com/photo-1585421514738-01798e348b17?q=80&w=400" alt="Guantes y Esponja"></div>
+                <h3>Guantes y Esponja</h3>
+                <p class="precio">$1.990</p>
+                <button class="btn-agregar" data-nombre="Guantes y Esponja" data-precio="1990"><i class="fa-solid fa-cart-shopping"></i> Agregar</button>
+            </div>
+        </div>
     </section>
 
+    <!-- Barra de Ventajas Inferior -->
+    <div class="ventajas-bar">
+        <span><i class="fa-solid fa-truck-fast"></i> <strong>Envíos rápidos</strong><br>A todo el país</span>
+        <span><i class="fa-solid fa-award"></i> <strong>Productos de calidad</strong><br>Garantía asegurada</span>
+        <span><i class="fa-solid fa-credit-card"></i> <strong>Pagos seguros</strong><br>100% protegidos</span>
+        <span><i class="fa-solid fa-headset"></i> <strong>Atención personalizada</strong><br>Por WhatsApp</span>
+    </div>
+
+    <!-- Carrito Lateral Desplegable (Sidebar tipo la imagen) -->
+    <div class="carrito-overlay" id="carrito-overlay"></div>
+    <div class="carrito-sidebar" id="carrito-sidebar">
+        <div class="carrito-header">
+            <h3><i class="fa-solid fa-cart-shopping"></i> Tu Carrito</h3>
+            <button id="cerrar-carrito" class="close-btn">&times;</button>
+        </div>
+        
+        <!-- Cuerpo Dinámico del carro -->
+        <div class="carrito-body" id="carrito-body">
+            <!-- Estado vacío por defecto -->
+            <div class="carrito-vacio" id="carrito-vacio-msg">
+                <i class="fa-solid fa-cart-flatbed-suitcase vacio-icon"></i>
+                <p><strong>Tu carrito está vacío</strong></p>
+                <p class="sub">Agrega productos para verlos aquí</p>
+            </div>
+            <ul class="carrito-lista-items" id="carrito-lista-items"></ul>
+        </div>
+
+        <div class="carrito-footer">
+            <div class="total-box">
+                <span>Total</span>
+                <span id="total-precio">$0</span>
+            </div>
+            <button id="btn-whatsapp" class="btn-finalizar-wa">
+                <i class="fa-brands fa-whatsapp"></i> Finalizar compra por WhatsApp
+            </button>
+            <p class="wa-nota"><i class="fa-solid fa-circle-check"></i> Enviaremos tu pedido por WhatsApp</p>
+        </div>
+    </div>
+
+    <!-- Botón flotante permanente de WhatsApp -->
+    <a href="https://wa.me/56912345678" class="whatsapp-flotante" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
     <footer id="contacto">
-        <p>📞 WhatsApp: +56 9 1234 5678</p>
-        <p>© 2026 CleanHome</p>
+        <p>© 2026 CleanHome - Artículos de Aseo. Todos los derechos reservados.</p>
     </footer>
 
     <script src="script.js"></script>
-
 </body>
 </html>
